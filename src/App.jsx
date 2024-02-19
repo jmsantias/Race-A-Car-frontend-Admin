@@ -1,12 +1,15 @@
-
+import Footer from "./Components/Footer"
+import Header from "./Components/Header"
+import Home from "./Components/Home"
 
 function App() {
 
   return (
     <>
 
-  <h1 className="text-primary underline">Hola Mundo</h1>
-
+  <Header/>
+  <Home/>
+  <Footer/>
     </>
   )
 }
