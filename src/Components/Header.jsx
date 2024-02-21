@@ -1,95 +1,104 @@
 import React, { useEffect } from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  NavbarMenu,
-} from "@nextui-org/react";
-import logo from "../assets/logo.png";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu} from "@nextui-org/react";
+import { IoMdArrowDropdown } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { GiHamburgerMenu } from "react-icons/gi";
+
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const navigate = useNavigate();
-
-
-  const rotate = () => {
-
-    document.querySelector("#hamburger").classList.toggle("rotate-90")
-  }
-
-  const menuItems = ["Crear cuenta", "Iniciar sesión"];
+  const navigate = useNavigate()
 
   return (
-    <Navbar onMenuOpenChange={setIsMenuOpen} className="bg-primaryBlue w-screen justify-between h-[100px] max-w-full ">
- 
-
-       
-        <NavbarBrand>
-        <img
-          src={logo}
-          alt="LOGO DE LA PAGINA"
-          className="w-[150px] h-[100px]"
-        />
-        <p className="text-primaryWhite ">RACE-A-CAR</p>
+    <Navbar className="bg-primaryBlue text-primaryWhite">
+      <NavbarBrand>
+      
+        <p className="font-bold text-inherit cursor-pointer" onClick={() => navigate("/dashboard")}>RACE-A-CAR</p>
       </NavbarBrand>
-      
-
-      
-     
-        <div className="flex flex justify-end gap-4 w-[50vw] hidden md:flex ">
-          <Button
-            as={Link}
-            color="primary"
-            href="#"
-            variant="ghost"
-            className="text-primaryWhite"
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <Dropdown>
+          <NavbarItem>
+            <DropdownTrigger>
+              <Button
+                disableRipple
+                className="p-0 bg-transparent data-[hover=true]:bg-transparent text-primaryWhite"
+                endContent={<IoMdArrowDropdown />}
+                radius="sm"
+                variant="light"
+              >
+                Vehículos
+              </Button>
+            </DropdownTrigger>
+          </NavbarItem>
+          <DropdownMenu
+            aria-label="ACME features"
+            className="w-[340px]"
+            itemClasses={{
+              base: "gap-4",
+            }}
           >
-            Crear cuenta
-          </Button>
-          <Button
-            as={Link}
-            color="primary"
-            href="#"
-            className="text-primaryWhite"
-            variant="ghost"
-          >
-            Iniciar sesión
-          </Button>
-        </div>
-
-       
-
-      <NavbarMenuToggle
-        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        className="md:hidden"
-        icon={<GiHamburgerMenu id="hamburger" className="text-primaryWhite" onClick={rotate}/>}
-      />
-   
-    
-   
-
-      <NavbarMenu className="mt-5">
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={index === menuItems.length - 1 ? "danger" : "foreground"}
-              href="#"
-              size="lg"
+            <DropdownItem
+              key="agregarAuto"
+              onClick={() => navigate("/dashboard/agregar/auto")}
             >
-              {item}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
+              Agregar nuevo vehículo
+            </DropdownItem>
+            <DropdownItem
+              key="autos"
+              onClick={() => navigate("/dashboard/autos")}
+            >
+              Tabla de vehículos
+            </DropdownItem>
+        
+          </DropdownMenu>
+        </Dropdown>
+
+
+        <Dropdown>
+          <NavbarItem>
+            <DropdownTrigger>
+              <Button
+                isDisabled
+                disableRipple
+                className="p-0 bg-transparent data-[hover=true]:bg-transparent text-primaryWhite"
+                endContent={<IoMdArrowDropdown />}
+                radius="sm"
+                variant="light"
+              >
+                Publicaciones
+              </Button>
+            </DropdownTrigger>
+          </NavbarItem>
+          <DropdownMenu
+            aria-label="ACME features"
+            className="w-[340px]"
+            itemClasses={{
+              base: "gap-4",
+            }}
+          >
+            <DropdownItem
+              key="autoscaling"
+              onClick={()=> navigate("/dashboard/agregar/publicacion")}
+            >
+              Agregar nueva publicación
+            </DropdownItem>
+            <DropdownItem
+              key="autoscaling"
+              onClick={() => navigate("/dashboard/publicaciones")}
+            >
+              Listado de publicaciones
+            </DropdownItem>
+        
+          </DropdownMenu>
+        </Dropdown>
+       
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem>
+          <Button onClick={() => navigate("/")} color="danger" href="#" variant="solid">
+            Cerrar sesión
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
     </Navbar>
   );
 };
