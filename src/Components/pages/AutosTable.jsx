@@ -2,10 +2,13 @@
 import { Button, Chip } from '@nextui-org/react'
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
 import {  Dropdown,  DropdownTrigger,  DropdownMenu,  DropdownItem, Pagination} from "@nextui-org/react";
+import {Modal, ModalContent, ModalBody, ModalFooter, useDisclosure,ModalHeader} from "@nextui-org/react";
 import { FaEye } from "react-icons/fa";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import React, { useContext, useEffect } from 'react'
+import React, { useContext,useState,useEffect } from 'react'
 import Header from '../Header';
+import { Carousel} from 'flowbite-react';
+import Swal from 'sweetalert2';
 
 import { GlobalContext } from '../../Context/AppContext';
 import { useNavigate } from 'react-router-dom';
@@ -13,8 +16,21 @@ import { useNavigate } from 'react-router-dom';
 const AutosTable = () => {
 
     const navigate = useNavigate()
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [selectedAutoId, setSelectedAutoId] = useState(null);
+    const [imageInModal, setImageInModal] = useState("")
 
-    const {state} = useContext(GlobalContext)
+    const handleView = (id) => {
+      setSelectedAutoId(id);
+      onOpen();
+    };
+
+    const handleCloseModal = () => {
+      setSelectedAutoId(null);
+      onClose();
+    };
+  
+    const {state,dispatch} = useContext(GlobalContext)
 
     const {autos} = state
 
@@ -29,6 +45,38 @@ const AutosTable = () => {
   
       return autos.slice(start, end);
     }, [page, autos]);
+
+
+    const handleDelete = (id) => {
+      displayAlert(id);
+    };
+
+    const displayAlert = (id) => {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Una vez realizada esta acción, se perderán los datos para siempre",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Confirmar"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Borrado con éxito",
+            text: "El documento fue borrado de la base de datos",
+            icon: "success"
+          });
+          dispatch({ type: "DELETE_AUTO", payload: id });
+        }
+      });
+    };
+
+    useEffect(() => {
+      const  item = (items.find(i => i.id == selectedAutoId))
+      setImageInModal(item)
+    },[selectedAutoId])
+   
 
   return (
     <>
@@ -66,16 +114,21 @@ const AutosTable = () => {
 
       </TableHeader>
       <TableBody items={items}>
+        
         {(item) => (
+          
             
-                <TableRow key={item.Modelo}>
+                <TableRow key={item.id}>
                 <TableCell>{item.Marca}</TableCell>
                 <TableCell>{item.Modelo}</TableCell>
                 <TableCell>{item.Capacidad}</TableCell>
                 <TableCell>{item.Categoria}</TableCell>
                 <TableCell><Chip color={item.Estado ? "primary" : "danger"}>{item.Estado ? "activo" : "inactivo"}</Chip></TableCell>
                 <TableCell>{item.Precio}</TableCell>
-                <TableCell><Button size="sm" variant='solid' className='bg-primaryGold text-primaryWhite'><FaEye className='text-[18px]' /></Button></TableCell>
+                <TableCell>
+                  <Button size="sm" variant='solid' onClick={() => handleView(item.id)} className='bg-primaryGold text-primaryWhite'><FaEye className='text-[18px]' />
+                  </Button>
+                  </TableCell>
                 <TableCell>
                 <Dropdown>
             <DropdownTrigger>
@@ -89,8 +142,8 @@ const AutosTable = () => {
             </DropdownTrigger>
             <DropdownMenu aria-label="Static Actions">
               <DropdownItem key="editar">editar</DropdownItem>
-              <DropdownItem key="cambiar estado">cambiar estado</DropdownItem>
-              <DropdownItem key="borrar" className="text-danger" color="danger">
+              <DropdownItem key="cambiar estado" onClick={() => dispatch({ type: "TOGGLE_ESTADO", payload: item.id }) }>cambiar estado</DropdownItem>
+              <DropdownItem key="borrar" onClick={() => handleDelete(item.id)} className="text-danger" color="danger">
                 borrar
               </DropdownItem>
             </DropdownMenu>
@@ -105,6 +158,22 @@ const AutosTable = () => {
       </TableBody>
     </Table>
 
+    {selectedAutoId && imageInModal != "" &&  (
+          <Modal isOpen={isOpen} onOpenChange={onClose} size='5xl'>
+            <ModalContent>
+              <ModalBody>
+                  
+                    <img src={imageInModal?.LinkFoto} alt="" />
+                 
+              </ModalBody>
+              <ModalFooter>
+                <Button color="warning" variant="solid" onPress={handleCloseModal}>
+                  Cerrar
+                </Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+        )}
 
 
     </div>

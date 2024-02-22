@@ -82,6 +82,7 @@ const publicaciones = [
 ]
 const autos = [
     {
+        "id":1,
         "Marca": "Mercedes-Benz",
         "Modelo": "S-Class",
         "Capacidad": 5,
@@ -91,6 +92,7 @@ const autos = [
         "LinkFoto": "https://cdn.motor1.com/images/mgl/koWGpQ/s3/mercedes-benz-clase-s-2024.jpg"
       },
       {
+        "id":2,
         "Marca": "BMW",
         "Modelo": "7 Series",
         "Capacidad": 5,
@@ -100,6 +102,7 @@ const autos = [
         "LinkFoto":" https://cdn.motor1.com/images/mgl/OXx4M/s1/el-nuevo-bmw-serie-7-llego-a-la-argentina-el-primer-ejemplar-se-exhibe-en-sergio-trepat.jpg"
       },
       {
+        "id":3,
         "Marca": "Audi",
         "Modelo": "A8",
         "Capacidad": 5,
@@ -109,15 +112,17 @@ const autos = [
         "LinkFoto": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Audi_A8_L_D5_IMG_0066.jpg"
       },
       {
+        "id":4,
         "Marca": "Porsche",
         "Modelo": "Panamera",
         "Capacidad": 4,
         "Categoria": "Sedán deportivo de lujo",
         "Estado": false,
         "Precio": 400,
-        "LinkFoto": "https://blog.autodo.com.ar/wp-content/uploads/2020/09/httpsev-database.ukimgautoporsche_panamera_turbo_s_e-hybridporsche_panamera_turbo_s_e-hybrid-012x-1280x640.jpg"
+        "LinkFoto": "https://www.wsupercars.com/wallpapers-regular/Porsche/2011-Porsche-Panamera-Turbo-S-001-1440.jpg"
       },
       {
+        "id":5,
         "Marca": "Lamborghini",
         "Modelo": "Urus",
         "Capacidad": 5,
@@ -127,6 +132,7 @@ const autos = [
         "LinkFoto": "https://cdn.motor1.com/images/mgl/lE6zyM/s3/whatsapp-image-2023-11-01-at-10.05.55.jpg"
       },
       {
+        "id":20,
         "Marca": "Ferrari",
         "Modelo": "Portofino",
         "Capacidad": 4,
@@ -136,6 +142,7 @@ const autos = [
         "LinkFoto": "https://www.amalgamcollection.com/cdn/shop/products/DSCF7663WIDEEDIT_2000x850_crop_center.jpg"
       },
       {
+        "id":6,
         "Marca": "Aston Martin",
         "Modelo": "DB11",
         "Capacidad": 4,
@@ -145,6 +152,7 @@ const autos = [
         "LinkFoto":" https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/2018_Aston_Martin_DB11_V8_Automatic_4.0.jpg/1200px-2018_Aston_Martin_DB11_V8_Automatic_4.0.jpg"
       },
       {
+        "id":7,
         "Marca": "Maserati",
         "Modelo": "Quattroporte",
         "Capacidad": 5,
@@ -154,6 +162,7 @@ const autos = [
         "LinkFoto": "https://upload.wikimedia.org/wikipedia/commons/d/d1/2015_Maserati_Quattroporte_DV6_Automatic_3.0_Front.jpg"
       },
       {
+        "id":8,
         "Marca": "Land Rover",
         "Modelo": "Range Rover",
         "Capacidad": 5,
@@ -163,6 +172,7 @@ const autos = [
         "LinkFoto": "https://media.cdn-jaguarlandrover.com/api/v2/images/77398/w/1000.jpg"
       },
       {
+        "id":9,
         "Marca": "McLaren",
         "Modelo": "GT",
         "Capacidad": 2,
@@ -172,6 +182,7 @@ const autos = [
         "LinkFoto": "https://www.megautos.com/wp-content/uploads/2023/12/Medium-15790-ThenewMcLarenGTS.jpg"
       },
       {
+        "id":10,
         "Marca": "Bugatti",
         "Modelo": "Chiron",
         "Capacidad": 2,
@@ -181,6 +192,7 @@ const autos = [
         "LinkFoto": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/FoS20162016_0624_132444AA_%2827785299372%29.jpg/1200px-FoS20162016_0624_132444AA_%2827785299372%29.jpg"
       },
       {
+        "id":11,
         "Marca": "Pagani",
         "Modelo": "Huayra",
         "Capacidad": 2,
@@ -190,6 +202,7 @@ const autos = [
         "LinkFoto": "https://e00-marca.uecdn.es/assets/multimedia/imagenes/2016/02/19/14558717134655.jpg"
       },
       {
+        "id":12,
         "Marca": "Koenigsegg",
         "Modelo": "Jesko",
         "Capacidad": 2,
@@ -199,6 +212,7 @@ const autos = [
         "LinkFoto": "https://img.remediosdigitales.com/169de9/koenigsegg-jesko-absolut-1/1366_2000.jpg"
       },
       {
+        "id":13,
         "Marca": "Mercedes-AMG",
         "Modelo": "GT",
         "Capacidad": 2,
@@ -208,6 +222,7 @@ const autos = [
         "LinkFoto": "https://storage.googleapis.com/carmuv-development.appspot.com/1/2023/08/1366_2000.jpeg"
       },
       {
+        "id":14,
         "Marca": "Jaguar",
         "Modelo": "XJ",
         "Capacidad": 5,
@@ -217,6 +232,7 @@ const autos = [
         "LinkFoto": "https://upload.wikimedia.org/wikipedia/commons/f/f4/2011_Jaguar_XJ-L_--_05-05-2010.jpg"
       },
       {
+        "id":15,
         "Marca": "Tesla",
         "Modelo": "Model S",
         "Capacidad": 5,
@@ -226,6 +242,7 @@ const autos = [
         "LinkFoto": "https://upload.wikimedia.org/wikipedia/commons/1/14/2018_Tesla_Model_S_75D.jpg"
       },
       {
+        "id":16,
         "Marca": "Bentley",
         "Modelo": "Flying Spur",
         "Capacidad": 5,
@@ -235,6 +252,7 @@ const autos = [
         "LinkFoto":" https://cdn.motor1.com/images/mgl/284vz/s1/2022-bentley-flying-spur-mulliner-three-quarters.jpg"
       },
       {
+        "id":17,
         "Marca": "Rolls-Royce",
         "Modelo": "Ghost",
         "Capacidad": 5,
@@ -244,6 +262,7 @@ const autos = [
         "LinkFoto": "https://soymotor.com/sites/default/files/imagenes/noticia/rolls-royce-new-ghost-2-soymotor.jpg"
       },
       {
+        "id":18,
         "Marca": "Alfa Romeo",
         "Modelo": "Giulia Quadrifoglio",
         "Capacidad": 5,
@@ -253,6 +272,7 @@ const autos = [
         "LinkFoto": "https://img.remediosdigitales.com/84a8fa/img_20230914_154724540-copia/840_560.jpeg"
       },
       {
+        "id":19,
         "Marca": "Lexus",
         "Modelo": "LS",
         "Capacidad": 5,
